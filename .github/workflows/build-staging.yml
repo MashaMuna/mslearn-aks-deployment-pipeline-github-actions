@@ -26,4 +26,30 @@ jobs:
         with:
           context: .
           push: true           
-          tags: ${{secrets.ACR_NAME}}/contoso-website:latest         
+          tags: ${{secrets.ACR_NAME}}/contoso-website:latest
+          
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: build_push_image # Will wait for the execution of the previous job
+
+    steps:
+      - uses: actions/checkout@v2  
+
+      - name: Install Helm
+        uses: Azure/setup-helm@v3
+        with:
+          version: v3.12.3
+
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v3
+        with:
+          # Resource Group Name
+          resource-group: 
+          # AKS Cluster Name
+          cluster-name: 
+          # AKS Cluster Subscription
+          subscription: # optional
+          # Get cluster admin credentials. Values: true or false
+          admin: # optional
+          # Enables kubelogin for non-admin user scenario. Values: true or false
+          use-kubelogin: # optional          
