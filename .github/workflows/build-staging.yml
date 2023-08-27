@@ -40,16 +40,11 @@ jobs:
         with:
           version: v3.12.3
 
-      - name: Azure Kubernetes set context
+      - name: Get AKS Credentials
         uses: Azure/aks-set-context@v3
         with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
           # Resource Group Name
-          resource-group: 
+          resource-group: mslearn-gh-pipelines-1345
           # AKS Cluster Name
-          cluster-name: 
-          # AKS Cluster Subscription
-          subscription: # optional
-          # Get cluster admin credentials. Values: true or false
-          admin: # optional
-          # Enables kubelogin for non-admin user scenario. Values: true or false
-          use-kubelogin: # optional          
+          cluster-name: contoso-video
