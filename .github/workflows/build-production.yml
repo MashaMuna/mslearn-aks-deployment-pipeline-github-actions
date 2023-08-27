@@ -43,7 +43,7 @@ jobs:
       - name: Install Helm
         uses: Azure/setup-helm@v3
         with:
-          version: v3.12.3
+          version: v3.3.1
 
       - name: Get AKS Credentials
         uses: Azure/aks-set-context@v1
